@@ -49,7 +49,7 @@ plt.ylabel("Axis Y_anamorph")
 plt.grid(True)
 plt.show()
 
-mask = (df["t"] >= 9) & (df["t"] <= 16)  # interval of uniformity => grow up
+mask = (df["t"] >= 9) & (df["t"] <= 16)  # interval of uniformity => "+"
 df_active = df_active[mask].copy()
 fig = plt.plot(df_active["t"], df_active["Y_anamorph"], label="dy/dt", color="r")
 plt.title("Uniformity figure Y(t) (t in [9;16])")
@@ -80,6 +80,8 @@ def find_k_1(df_active):
 
     plt.scatter(X, y, color="blue", label="Data")
     plt.plot(X, y_pred, color="red", linewidth=2, label="Regression")
+    plt.xlabel("t")
+    plt.ylabel("ln((1/y) * (dy/dt))")
     plt.legend()
     plt.show()
 
@@ -100,7 +102,7 @@ def find_k_y_2(df_active):
     r_squared = model.score(X, y)
     print(f"determination coef R^2 = {r_squared:.4f}")
     sclope = model.coef_[0]
-    print(f"Sclope k_2 = {-sclope}")
+    print(f"Slope k_2 = {-sclope}")
 
     k = -sclope
     intercept = model.intercept_  # k*ln(y_inf)
@@ -113,6 +115,8 @@ def find_k_y_2(df_active):
 
     plt.scatter(X, y, color="blue", label="Data")
     plt.plot(X, y_pred, color="red", linewidth=2, label="Regression")
+    plt.xlabel("ln(y_median(t))")
+    plt.ylabel("(1/y) * (dy/dt)")
     plt.legend()
     plt.show()
 
@@ -151,6 +155,8 @@ def find_k_y_3(df_active):
 
     plt.scatter(X, y, color="blue", label="Data")
     plt.plot(X, y_pred, color="red", linewidth=2, label="Regression")
+    plt.xlabel("ln(y_median(t))")
+    plt.ylabel("ln(y(t+tau))")
     plt.legend()
     plt.show()
 
@@ -183,6 +189,8 @@ def check(df_active):
 
     plt.scatter(X, y, color="blue", label="Data")
     plt.plot(X, y_pred1, color="red", linewidth=2, label="Regression")
+    plt.xlabel("t")
+    plt.ylabel("z_1")
     plt.legend()
     plt.show()
 
@@ -208,14 +216,14 @@ def check(df_active):
     plt.scatter(X_2, y_2, color="blue", label="Data")
     plt.plot(X_2, y_pred_2, color="red", linewidth=2, label="Regression")
     plt.legend()
+    plt.xlabel("t")
+    plt.ylabel("z_2")
     plt.show()
 
     equation_1 = b - k * df_active["t"].iloc[25]
     equation_2 = b_2 - k_2 * df_active["t"].iloc[25]
     Y_1 = df_active["z_1"].iloc[25]
     Y_2 = df_active["z_2"].iloc[25]
-
-    # СХООООООООООООООООДИТСЯ УРАААААААААААААААААААА
 
     print(f"{Y_1} = {equation_1}")
     print(f"{Y_2} = {equation_2}")
