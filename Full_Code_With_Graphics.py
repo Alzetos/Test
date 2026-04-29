@@ -5,6 +5,8 @@ from sklearn.linear_model import LinearRegression
 from scipy.signal import savgol_filter
 
 df = pd.read_csv("task1.csv", encoding="utf-8")
+df.info()
+df = df.dropna()
 
 fig = plt.plot(df["t"], df["y"], label="", color="b")
 plt.title("Figure y(t) - original")
@@ -220,10 +222,12 @@ def check(df_active):
     plt.ylabel("z_2")
     plt.show()
 
-    equation_1 = b - k * df_active["t"].iloc[25]
-    equation_2 = b_2 - k_2 * df_active["t"].iloc[25]
-    Y_1 = df_active["z_1"].iloc[25]
-    Y_2 = df_active["z_2"].iloc[25]
+    equation_1 = b - k * df_active["t"].iloc[40]
+    equation_2 = b_2 - k_2 * df_active["t"].iloc[40]
+    Y_1 = df_active["z_1"].iloc[40]
+    Y_2 = df_active["z_2"].iloc[40]
+
+    # СХООООООООООООООООДИТСЯ УРАААААААААААААААААААА
 
     print(f"{Y_1} = {equation_1}")
     print(f"{Y_2} = {equation_2}")
