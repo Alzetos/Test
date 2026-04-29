@@ -197,7 +197,6 @@ class Solution:
         Y_1 = self.df_active["z_1"].iloc[25]
         Y_2 = self.df_active["z_2"].iloc[25]
 
-        # СХООООООООООООООООДИТСЯ УРАААААААААААААААААААА
 
         print(f"{Y_1} = {equation_1}")
         print(f"{Y_2} = {equation_2}")
